@@ -1,0 +1,55 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+    padding-top:50px;
+}
+
+
+
+body {
+    border: 8px solid lightgreen;
+    border-radius: 20px;
+    padding: 40px;
+    width: 60%;
+    height: 500px;
+    margin: 0 auto;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/Backgorund.gif');
+}
+
+#clock {
+    height:120px;
+    font-size: 40px;
+    font-family: arial;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  color: white;
+}
+
+h2 {
+	text-align:center;
+  
+
+}
+
+
+.texxt{
+    text-align:center;
+    font-family: Verdana;
+    font-size: 1em;
+    padding: 0.7em;
+  color: white;
+}
+
+.bigger {
+    font-weight:bold;
+    font-size: 18px;
+}
+
+
+
+
+

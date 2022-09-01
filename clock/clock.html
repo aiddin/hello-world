@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Alien Clock</title>
+		<meta charset='UFT-8' name='viewport' content='width=device-width, initial=scale=1.0' >
+		<link rel='stylesheet' type='text/css' href='clock.css'>
+	</head>
+<body onload="onload()">
+<window class="onload"></window>
+<h2 class ="texxt">Alien Clock</h2>
+<div class ="texxt" id="txt"></div>
+<div class ="texxt"id="alien"></div>
+<div class ="texxt"id="pickedalien"></div>
+<p class="texxt">Pick an Earth Date</p>
+<input id="date" type="date" name="date" />
+<input id="time" type="time" name="time" />
+<button id="calc">Get Time</button>
+<div class= "texxt"id = "earthpick"></div>
+<br>
+<script>
+    function Clock(clock) {
+        var clock = this;
+    var timeout;
+    var time;
+    convertToAlien();
+ // reassign time to their respective detail.
+    var alienesec= Math.trunc(alienepoch/1000);
+    var temp = alienesec%90;
+    var tempmin = Math.trunc(alienepoch/90);
+    var realmin = tempmin%90;
+    var temphour = Math.trunc(tempmin/90);
+    var realhour = temphour%36;
+    var tempday = Math.trunc(temphour/36);
+    var tempyear=Math.trunc(tempday/770); //need fixing base epoch
+    var realday= tempday%770;
+    var viewday;
+    console.log(realday);
+    var realmonth;
+
+    //assign month based on day of the year.
+    if(realday <=44){
+         realmonth='1';
+        viewday=realday;
+    }
+    if( realday<=86 && realday>44){
+         realmonth= '2';
+        viewday = realday-44;
+        
+    }
+    if(realday>86 &&realday<=134){
+        realmonth= '3';
+       viewday = realday-86;
+   }
+   if(realday>134 && realday<=174){
+        realmonth= '4';
+        viewday = realday-174;
+    }
+    if( realday<=222 && realday>175){
+        realmonth= '5';
+        viewday = (realday-175);
+    }
+    if(realday<=266 && realday>222){
+        realmonth= '6';
+        viewday = realday-222;
+    }
+    if(realday<=366 && realday>306){
+        realmonth= '7';
+    viewday = realday-306;
+    }
+    if( realday<=350 && realday>306){
+        realmonth= '8';
+    viewday = realday-306;
+    }
+    if(realday<=393 && realday>350){
+        realmonth= '9';
+    viewday = realday-350;
+    }
+    if( realday<=432 && realday>393){
+        realmonth= '10';
+    viewday = realday-393;
+    }
+    if(realday<=472 && realday>432){
+        realmonth= '11';
+    viewday = realday-432;
+    }
+    if(realday<=514 && realday>472){
+        realmonth= '12';
+         viewday = realday-472;
+    }
+    if( realday<=558&& realday>514){
+        realmonth= '13';
+    viewday = realday-514;
+    }
+    if( realday<=606 && realday>558){
+        realmonth= '14';
+    viewday = realday-558;
+    }
+    if( realday<=648&& realday>606){
+        realmonth= '15';
+    viewday = realday-606;
+    }
+    if(realday<=688 && realday>648){
+        realmonth= '16';
+    viewday = realday-648;
+    }
+    if( realday<=732&& realday>688){
+        realmonth= '17';
+    viewday = realday-688;
+    }
+    if( realday<=770&& realday>732){
+        realmonth= '18';
+        viewday = realday-732;
+    }
+    this.month=realmonth;
+    this.year= tempyear;
+    this.day= viewday;
+    this.hours = realhour;
+    this.minutes = realmin;
+    this.seconds = temp;
+    this.start = start;
+
+    // refresh tick based on alien time
+    function tick() {
+        time += 500;
+        timeout = setTimeout(tick, time - Date.now());
+        display();
+        update();
+        
+    }
+    function stop() {
+        clearTimeout(timeout);
+    }
+    function convertToAlien(){
+        const d1 = new Date();
+        var test = d1.getTime();
+        
+        // 10.13764038050463 = millis diff between
+        alienepoch=((test*1.13764038050463));
+        return alienepoch;
+        
+    }
+
+    function start() {
+        timeout = setTimeout(tick, 0);
+        time = Date.now();
+        convertToAlien();
+        console.log("Alien Time since UNIX epoch :"+alienepoch);
+    }
+//629,810,235,268
+//diplays the clock
+    function display() {
+        var hours = clock.hours;
+        var minutes = clock.minutes;
+        var seconds = clock.seconds;
+        var viewday = clock.day;
+        var month= clock.month;
+        var year= clock.year;
+        //add zero 
+        hours = hours < 10 ? "0" + hours : "" + hours;
+        minutes = minutes < 10 ? "0" + minutes : "" + minutes;
+        seconds = seconds < 10 ? "0" + seconds : "" + seconds;
+        convertToAlien();
+        document.getElementById('alien').innerHTML = "Alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\tTime :"+hours + ":" + minutes + ":" + seconds;
+
+        // console.log("Alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\ttime :"+hours + ":" + minutes + ":" + seconds);
+        
+    }
+//update the clock
+    function update() {
+        var seconds = clock.seconds += 1;
+
+        if (seconds === 90) {
+            clock.seconds = 0;
+            var minutes = ++clock.minutes;
+
+            if (minutes === 90) {
+                clock.minutes = 0;
+                var hours = ++clock.hours;
+
+                if (hours === 36) clock.hours = 0;
+                var day = ++clock.day;
+
+                if (day === 770) clock.day=1;
+                var year= ++clock.year;
+                
+            }
+        }
+    }
+}
+ var calc = document.getElementById("calc");
+ var e;
+calc.addEventListener("click", function() {
+    var date = document.getElementById("date").value,
+        time = document.getElementById("time").value
+    
+     e = new Date(date + " " + time);
+    console.log(e.getTime());
+    document.getElementById('earthpick').innerHTML = e;
+    var eclock = new eClock("eClock");
+    eclock.start();    
+})
+function eClock(eclock) {
+    var eclock = this;
+    var timeout;
+    var time;
+    convertToAlien();
+ // reassign time to their respective detail.
+    var alienesec= Math.trunc(alienepoch/1000);
+    var temp = alienesec%90;
+    var tempmin = Math.trunc(alienepoch/90);
+    var realmin = tempmin%90;
+    var temphour = Math.trunc(tempmin/90);
+    var realhour = temphour%36;
+    var tempday = Math.trunc(temphour/36);
+    var tempyear=Math.trunc(tempday/770); //need fixing base epoch
+    var realday= tempday%770;
+    var viewday;
+    console.log(realday);
+    var realmonth;
+
+    //assign month based on day of the year.
+    if(realday <44){
+         realmonth='1';
+        viewday=realday;
+    }
+    if( realday<=86 && realday>44){
+         realmonth= '2';
+        viewday = realday-44;
+        
+    }
+    if(realday>86 &&realday<=134){
+        realmonth= '3';
+       viewday = realday-86;
+   }
+   if(realday>134 && realday<=174){
+        realmonth= '4';
+        viewday = realday-174;
+    }
+    if( realday<=222 && realday>175){
+        realmonth= '5';
+        viewday = (realday-175);
+    }
+    if(realday<=266 && realday>222){
+        realmonth= '6';
+        viewday = realday-222;
+    }
+    if(realday<=366 && realday>306){
+        realmonth= '7';
+    viewday = realday-306;
+    }
+    if( realday<=350 && realday>306){
+        realmonth= '8';
+    viewday = realday-306;
+    }
+    if(realday<=393 && realday>350){
+        realmonth= '9';
+    viewday = realday-350;
+    }
+    if( realday<=432 && realday>393){
+        realmonth= '10';
+    viewday = realday-393;
+    }
+    if(realday<=472 && realday>432){
+        realmonth= '11';
+    viewday = realday-432;
+    }
+    if(realday<=514 && realday>472){
+        realmonth= '12';
+         viewday = realday-472;
+    }
+    if( realday<=558&& realday>514){
+        realmonth= '13';
+    viewday = realday-514;
+    }
+    if( realday<=606 && realday>558){
+        realmonth= '14';
+    viewday = realday-558;
+    }
+    if( realday<=648&& realday>606){
+        realmonth= '15';
+    viewday = realday-606;
+    }
+    if(realday<=688 && realday>648){
+        realmonth= '16';
+    viewday = realday-648;
+    }
+    if( realday<=732 && realday>688){
+        realmonth= '17';
+    viewday = realday-688;
+    }
+    if( realday<=770 && realday>732){
+        realmonth= '18';
+        viewday = realday-732;
+    }
+    this.month=realmonth;
+    this.year= tempyear;
+    this.day= viewday;
+    this.hours = realhour;
+    this.minutes = realmin;
+    this.seconds = temp;
+    this.start = start;
+
+    // refresh tick based on alien time
+    function etick() {
+        time += 500;
+        timeout = setTimeout(etick, time - Date.now());
+        display();
+        update();
+        
+    }
+    function stop() {
+        clearTimeout(timeout);
+    }
+    function convertToAlien(){
+        console.log(e.getTime());
+        var test = e.getTime();
+        // 1.13764038050463 = millis diff between
+        alienepoch=((test*1.1376));
+        return alienepoch;
+        
+    }
+
+    function start() {
+        timeout = setTimeout(etick, 0);
+        time = Date.now();
+        convertToAlien();
+        console.log("Alien Time since UNIX epoch :"+alienepoch);
+    }
+//629,810,235,268
+//diplays the clock
+    function display() {
+        var hours = eclock.hours;
+        var minutes = eclock.minutes;
+        var seconds = eclock.seconds;
+        var viewday = eclock.day;
+        var month= eclock.month;
+        var year= eclock.year;
+        //add zero 
+        hours = hours < 10 ? "0" + hours : "" + hours;
+        minutes = minutes < 10 ? "0" + minutes : "" + minutes;
+        seconds = seconds < 10 ? "0" + seconds : "" + seconds;
+        convertToAlien();
+        document.getElementById('pickedalien').innerHTML = "Picked alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\tTime :"+hours + ":" + minutes + ":" + seconds;
+
+        // console.log("Alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\ttime :"+hours + ":" + minutes + ":" + seconds);
+        
+    }
+//update the clock
+    function update() {
+        var seconds = clock.seconds += 1;
+
+        if (seconds === 90) {
+            clock.seconds = 0;
+            var minutes = ++clock.minutes;
+
+            if (minutes === 90) {
+                clock.minutes = 0;
+                var hours = ++clock.hours;
+
+                if (hours === 36) clock.hours = 0;
+                var day = ++clock.day;
+
+                if (day === 770) clock.day=1;
+                var year= ++clock.year;
+                
+            }
+        }
+    }
+}
+//onload function 
+function onload(){
+    console.log("Initialise current earth time!");
+    var clock = new Clock("clock");
+	clock.start();
+    var earthclock = new startTime;
+    
+}
+//start earthclock
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  let d =today.getDate();
+  let mon = today.getMonth()+1;
+  let y = today.getFullYear();
+  m = checkTime(m);
+  s = checkTime(s);
+    //display earthtime per second
+    document.getElementById('txt').innerHTML = "Earth time is Year "+y+" Month:"+mon+" Day: "+d+" Time:"+ h + ":" + m + ":" + s;
+    // console.log("\t\t\t\t\t\t\t\t\tEarth time is  "+ h+ ":" + m + ":" + s);
+    setTimeout(startTime, 1000);
+}
+// add zero in front of watch number
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  
+  return i;
+}
+//alien clock function
+
+
+
+</script>
+
+</body>
+</html>
+
+
