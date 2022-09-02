@@ -18,6 +18,7 @@
         <strong>Full Date:</strong> {{ fulldatetime }}
       </li>
     </ul>
+    <timeClock v-bind:test="date"/>
   </div>
   <img
     alt="Vue logo"
@@ -26,19 +27,21 @@
     height="200"
   />
   <alienClock v-bind:msg="message" />
-  <alienClock v-bind:time="0" />
-  <alienClock v-bind:alienTime="0" />
-  <input type="text" v-model="message" />
+  
+  
   <button v-on:click="alertMessage">Alert</button>
+  
 </template>
 
 <script>
 import alienClock from "./components/alienClock.vue";
+import timeClock from "./components/timeClock.vue";
 
 export default {
   name: "App",
   components: {
     alienClock,
+    timeClock,
   },
 
   data: () => ({
