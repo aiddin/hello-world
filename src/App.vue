@@ -108,7 +108,6 @@ export default {
         " " +
         this.week[cd.getDay()];
     },
-    
   },
   mounted: function () {
     this.date = this.printDate();
