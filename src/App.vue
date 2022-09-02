@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-center mb-3">Vue Get Full Date and Time Example</h2>
+    <h2 class="text-center">Alien Clock</h2>
     <ul class="list-group">
       <li class="list-group-item" v-show="timestamp">
         <strong>Timestamp:</strong> {{ timestamp }}
@@ -33,52 +33,76 @@
 </template>
 
 <script>
-import alienClock from './components/alienClock.vue'
+import alienClock from "./components/alienClock.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-   alienClock,
+    alienClock,
   },
 
-        
-        data: () => ({
-          message: 'Hello World!',
-          date: '',
-          time: '',
-          year: '',
-          timestamp: '',
-          fulldatetime: ''
-        }),
+  data: () => ({
+    message: "Hello World!",
+    date: "",
+    time: "",
+    year: "",
+    timestamp: "",
+    fulldatetime: "",
+  }),
 
-        methods: {
-          alertMessage(){
-              alert(this.message)
-           },
-          printDate: function () {
-            return new Date().toLocaleDateString();
-          },
-          printTime: function () {
-            return new Date().toLocaleTimeString();
-          },
-          printYear: function () {
-            return new Date().getFullYear();
-          },          
-          printTimestamp: function () {
-            return Date.now();
-          },
-          printFullDate: function(){
-            return new Date();
-          }
-        },
-        mounted: function () {
-          this.date = this.printDate();
-          this.time = this.printTime();
-          this.timestamp = this.printTimestamp();
-          this.year = this.printYear();
-          this.fulldatetime = this.printFullDate();
-        },
-    };
+  methods: {
+    alertMessage() {
+      alert(this.message);
+    },
+    printDate: function () {
+      return new Date().toLocaleDateString();
+    },
+    printTime: function () {
+      return new Date().toLocaleTimeString();
+    },
+    printYear: function () {
+      return new Date().getFullYear();
+    },
+    printTimestamp: function () {
+      return Date.now();
+    },
+    printFullDate: function () {
+      return new Date();
+    },
+    zeroPadding: function (num, digit) {
+      var zero = "";
+      for (var i = 0; i < digit; i++) {
+        zero += "0";
+      }
+      return (zero + num).slice(-digit);
+    },
+    updateTime: function () {
+      var cd = new Date();
+      this.clock.time =
+        this.zeroPadding(cd.getHours(), 2) +
+        ":" +
+        this.zeroPadding(cd.getMinutes(), 2) +
+        ":" +
+        this.zeroPadding(cd.getSeconds(), 2);
+      this.clock.date =
+        this.zeroPadding(cd.getFullYear(), 4) +
+        "-" +
+        this.zeroPadding(cd.getMonth() + 1, 2) +
+        "-" +
+        this.zeroPadding(cd.getDate(), 2) +
+        " " +
+        this.week[cd.getDay()];
+    },
+    
+  },
+  mounted: function () {
+    this.date = this.printDate();
+    this.time = this.printTime();
+    this.timestamp = this.printTimestamp();
+    this.year = this.printYear();
+    this.fulldatetime = this.printFullDate();
+  },
+};
 </script>
 
 <style>
@@ -88,7 +112,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: maroon;
-  
+
   background: black;
   background-size: cover;
 }
