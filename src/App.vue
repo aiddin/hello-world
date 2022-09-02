@@ -10,8 +10,15 @@ Alien datetime conversion
 
 
 <template>
+  
   <div>
-    <h2 class="text-center">Alien Clock</h2>
+    <h1 class="text-center">Alien Clock</h1>
+    <img
+    alt="Vue logo"
+    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/d1fb123f-8d74-47c7-9759-acc3c7681530/ddbbmtz-07697bd8-557d-4828-ae75-246d6a3adfb4.jpg"
+    width="200"
+    height="200"
+  />
     <ul class="list-group">
       <li class="list-group-item" v-show="timestamp">
         <strong>Timestamp:</strong> {{ timestamp }}
@@ -31,15 +38,9 @@ Alien datetime conversion
     </ul>
     <timeClock v-bind:test="date"/>
   </div>
-  <img
-    alt="Vue logo"
-    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/d1fb123f-8d74-47c7-9759-acc3c7681530/ddbbmtz-07697bd8-557d-4828-ae75-246d6a3adfb4.jpg"
-    width="200"
-    height="200"
-  />
+  
   <alienClock v-bind:msg="message" />
-  
-  
+  <input type="text" v-model="message" />
   <button v-on:click="alertMessage">Alert</button>
   
 </template>
@@ -56,7 +57,7 @@ export default {
   },
 
   data: () => ({
-    message: "Hello World!",
+    message: "We've got a city to burn.",
     date: "",
     time: "",
     year: "",
@@ -129,5 +130,11 @@ export default {
 
   background: black;
   background-size: cover;
+}
+ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 500; /* Remove padding */
+  margin: 200; /* Remove margins */
+  text-align: left;
 }
 </style>

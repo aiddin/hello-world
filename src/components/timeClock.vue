@@ -26,7 +26,8 @@
       },
     },
     beforeMount() {
-      this.timer = setInterval(this.setDateTime, 1000);
+      
+      this.timer = setInterval(this.setDateTime, 500);
     },
     beforeUnmount() {
       clearInterval(this.timer);
