@@ -1,3 +1,14 @@
+<!-- TODO -->
+<!-- 
+Earth time
+  Earth date
+Earth datetime conversion
+Alien date&time
+Alien datetime conversion
+
+-->
+
+
 <template>
   <div>
     <h2 class="text-center">Alien Clock</h2>
