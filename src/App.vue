@@ -39,20 +39,20 @@ Alien datetime conversion
     <timeClock v-bind:test="date"/>
   </div>
   
-  <alienClock v-bind:msg="message" />
+  <messageTest v-bind:msg="message" />
   <input type="text" v-model="message" />
   <button v-on:click="alertMessage">Alert</button>
   
 </template>
 
 <script>
-import alienClock from "./components/alienClock.vue";
+import messageTest from "./components/messageTest.vue";
 import timeClock from "./components/timeClock.vue";
 
 export default {
   name: "App",
   components: {
-    alienClock,
+    messageTest,
     timeClock,
   },
 
@@ -84,30 +84,30 @@ export default {
     printFullDate: function () {
       return new Date();
     },
-    zeroPadding: function (num, digit) {
-      var zero = "";
-      for (var i = 0; i < digit; i++) {
-        zero += "0";
-      }
-      return (zero + num).slice(-digit);
-    },
-    updateTime: function () {
-      var cd = new Date();
-      this.clock.time =
-        this.zeroPadding(cd.getHours(), 2) +
-        ":" +
-        this.zeroPadding(cd.getMinutes(), 2) +
-        ":" +
-        this.zeroPadding(cd.getSeconds(), 2);
-      this.clock.date =
-        this.zeroPadding(cd.getFullYear(), 4) +
-        "-" +
-        this.zeroPadding(cd.getMonth() + 1, 2) +
-        "-" +
-        this.zeroPadding(cd.getDate(), 2) +
-        " " +
-        this.week[cd.getDay()];
-    },
+    // zeroPadding: function (num, digit) {
+    //   var zero = "";
+    //   for (var i = 0; i < digit; i++) {
+    //     zero += "0";
+    //   }
+    //   return (zero + num).slice(-digit);
+    // },
+    // updateTime: function () {
+    //   var cd = new Date();
+    //   this.clock.time =
+    //     this.zeroPadding(cd.getHours(), 2) +
+    //     ":" +
+    //     this.zeroPadding(cd.getMinutes(), 2) +
+    //     ":" +
+    //     this.zeroPadding(cd.getSeconds(), 2);
+    //   this.clock.date =
+    //     this.zeroPadding(cd.getFullYear(), 4) +
+    //     "-" +
+    //     this.zeroPadding(cd.getMonth() + 1, 2) +
+    //     "-" +
+    //     this.zeroPadding(cd.getDate(), 2) +
+    //     " " +
+    //     this.week[cd.getDay()];
+    // },
   },
   mounted: function () {
     this.date = this.printDate();
