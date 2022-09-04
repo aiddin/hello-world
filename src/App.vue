@@ -1,6 +1,5 @@
 <!-- TODO -->
 <!-- 
-Earth time
   Earth date
 Earth datetime conversion
 Alien date&time
@@ -109,6 +108,7 @@ export default {
     //     this.week[cd.getDay()];
     // },
   },
+  
   mounted: function () {
     this.date = this.printDate();
     this.time = this.printTime();

@@ -12,7 +12,7 @@
           minutes: date.getMinutes(),
           seconds: date.getSeconds(),
         },
-        timer: undefined,
+        
       };
     },
     methods: {
@@ -29,8 +29,8 @@
       
       this.timer = setInterval(this.setDateTime, 500);
     },
-    beforeUnmount() {
+    beforeUnmount(){
       clearInterval(this.timer);
-    },
+    }
   };
   </script>
