@@ -155,7 +155,7 @@ export default {
         seconds = seconds < 10 ? "0" + seconds : "" + seconds;
         this.convertToAlien();
         document.getElementById('pickedalien').innerHTML = "Picked alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\tTime :"+hours + ":" + minutes + ":" + seconds;
-        
+
         // console.log("Alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\ttime :"+hours + ":" + minutes + ":" + seconds);
     },
     update(){

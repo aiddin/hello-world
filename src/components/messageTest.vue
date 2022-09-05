@@ -7,11 +7,10 @@
 <script>
 
 export default {
-  name: 'alienClock',
+  name: 'messageTest',
   props: {
     msg: String,
-    time: Number,
-    alienTime: Number
+    
   }
 }
 </script>
