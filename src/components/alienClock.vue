@@ -6,28 +6,26 @@
   </div>
 </template>
 <script>
-var clock = new clock();
-clock.start();
 
 export default {
   name: "App",
   data() {
     return {
-      clock: {
-        alienepoch: clock.convertAlien(),
-        hours: this.minutes,
-        minutes: clock.getMinutes(),
-        seconds: clock.getSeconds(),
-        day: clock.getDate(),
-        month: clock.getMonth() + 1,
-        year: clock.getFullYear(),
-      },
+    //   Clock: {
+    //     alienepoch: clock.convertAlien(),
+    //     hours: this.minutes,
+    //     minutes: clock.getMinutes(),
+    //     seconds: clock.getSeconds(),
+    //     day: clock.getDate(),
+    //     month: clock.getMonth() + 1,
+    //     year: clock.getFullYear(),
+    //   },
     };
   },
 
   methods: {
     Clock: function () {
-      clock = this;
+      Clock = this;
       //  var timeout;
       //  var time;
       convertAlien();
@@ -132,10 +130,10 @@ export default {
       return alienepoch;
     },
     start: function () {
-      timeout = setInterval(this.tick, 0);
+      timeout = setInterval(tick, 0);
       time = Date.now();
       convertToAlien();
-      console.log("Alien Time since UNIX epoch :" + this.alienepoch);
+      console.log("Alien Time since UNIX epoch :" + alienepoch);
     },
     display: function () {
       var hours = clock.hours;
