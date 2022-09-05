@@ -1,8 +1,4 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-
-const app = createApp(App);
-app.provide('alienEpoch' );
-
-app.mount(App,'#app')
+createApp(App).mount('#app')
