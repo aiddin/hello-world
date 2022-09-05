@@ -18,8 +18,8 @@
 <div class= "texxt"id = "earthpick"></div>
 <br>
 <script>
-    function Clock(clock) {
-        var clock = this;
+    function Clock() {
+    var clock= this;
     var timeout;
     var time;
     convertToAlien();
@@ -303,7 +303,7 @@ function eClock(eclock) {
     // refresh tick based on alien time
     function etick() {
         time += 500;
-        timeout = setTimeout(etick, time - Date.now());
+        timeout = setInterval(etick, time - Date.now());
         display();
         update();
         
@@ -321,7 +321,7 @@ function eClock(eclock) {
     }
 
     function start() {
-        timeout = setTimeout(etick, 0);
+        timeout = setInterval(etick, 0);
         time = Date.now();
         convertToAlien();
         console.log("Alien Time since UNIX epoch :"+alienepoch);
