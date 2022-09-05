@@ -30,8 +30,11 @@ export default {
 
        
 
-    Clock(){
-     this.clock = this.this.clock,this.timeout, this.time;
+    Clock: function(){
+     clock = this;
+     var timeout;
+     var time;
+
       this.convertAlien();
       var alienesec= Math.trunc(this.$alienepoch/1000);
         var temp = alienesec%90;
@@ -128,7 +131,7 @@ export default {
     this.clock.start = this.start;
 
        },
-       convertAlien(){
+       convertAlien: function(){
         const d1 = new Date();
         var test = d1.getTime();
         // 1.13764038050463 = millis diff between
@@ -136,13 +139,13 @@ export default {
         return {alienepoch,
         }
        },
-    start(){
+    start: function(){
       this.timeout = setInterval(this.tick, 0);
         this.time = Date.now();
         this.convertToAlien();
         console.log("Alien Time since UNIX epoch :"+this.alienepoch);
     },
-    display(){
+    display: function(){
       var hours = clock.hours;
       var minutes = clock.minutes;
         var seconds = clock.seconds;
