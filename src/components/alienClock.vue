@@ -152,7 +152,7 @@ export default {
                 realmonth = "18";
                 viewday = realday - 732;
             }
-            thistestUpdate();
+            this.update();
             this.display();
             clock.month = realmonth;
             clock.year = tempyear;
@@ -162,14 +162,23 @@ export default {
             clock.seconds = temp;
             // this.clock.start = this.start();
         },
+        convertToAlien(){
+        const d1 = new Date.now();
 
-        testStart() {
+        var test = d1.getTime();
+        // 1.13764038050463 = millis diff between
+        var alienepoch=((test*1.1376));
+        return alienepoch;
+        
+    },
+
+        start() {
             this.timeout = setInterval(this.tick, 0);
             this.time = Date.now();
             this.convertToAlien();
             console.log("Alien Time since UNIX epoch :" + global.alienEpoch);
         },
-        display: function () {
+        display() {
 
             var hours = this.clock.hours;
             var minutes = this.clock.minutes;
@@ -198,7 +207,7 @@ export default {
 
             // console.log("Alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\ttime :"+hours + ":" + minutes + ":" + seconds);
         },
-        testUpdate() {
+        update() {
             var seconds = (this.clock.seconds += 1);
 
             if (seconds === 90) {
@@ -213,14 +222,17 @@ export default {
                     var day = ++this.clock.day;
 
                     if (day === 770) this.clock.day = 1;
+                    // eslint-disable-next-line
                     var year = ++this.clock.year;
+                    
                    
                 }
             }
         },
-        tryTick(){
+        tick(){
             var tick = this.tick;
             var time = 500;
+            // eslint-disable-next-line
             var timeout = setTimeout(tick, time - Date.now());
             this.display();
             this.update();
