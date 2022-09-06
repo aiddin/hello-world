@@ -63,7 +63,7 @@ export default {
         // },
     },
     methods: {
-        Clock: function () {
+        Clock() {
            var clock=this;
             //  var timeout;
             //  var time;
@@ -152,7 +152,7 @@ export default {
                 realmonth = "18";
                 viewday = realday - 732;
             }
-            this.testUpdate();
+            thistestUpdate();
             this.display();
             clock.month = realmonth;
             clock.year = tempyear;
@@ -163,7 +163,7 @@ export default {
             // this.clock.start = this.start();
         },
 
-        start() {
+        testStart() {
             this.timeout = setInterval(this.tick, 0);
             this.time = Date.now();
             this.convertToAlien();
@@ -198,7 +198,7 @@ export default {
 
             // console.log("Alien time is   Year: "+year+ " Month : "+month +" Day :"+viewday +"\ttime :"+hours + ":" + minutes + ":" + seconds);
         },
-        testUpdate: function () {
+        testUpdate() {
             var seconds = (this.clock.seconds += 1);
 
             if (seconds === 90) {
