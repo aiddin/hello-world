@@ -1,11 +1,12 @@
 <template>
-    <div>
+    <!-- <div>
         {{ dispay.month }}/{{ clock.month }}/{{ clock.year }} {{ clock.hours }}:{{
                 clock.minutes
         }}:{{ clock.seconds }}
         <div class="texxt" id="pickedalien"></div>
     
-    </div>
+    </div> -->
+    <div>{{ dateTime.day }}/{{ dateTime.month }}/{{ dateTime.year }}   {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</div>
 </template>
 
 <script>
@@ -13,9 +14,9 @@
 
 // var clock = new Clock();
 // clock.start();
-var test ;
-const d1 = new Date.now();
-test= d1*1.13764038050463;
+// var test ;
+// const d1 = new Date.now();
+// test= d1*1.13764038050463;
 export default {
     name: "App",
     data() {
@@ -23,8 +24,16 @@ export default {
          
 
         return {
+            dateTime: {
+            hours: realhour,
+          minutes: realmin,
+          seconds: temp,
+          day: viewday,
+          month:realmonth,
+          year:tempyear
 
-            alienEpoch: test,
+        },
+        
 
             // time: 500,
             // timeout: setTimeout(tick(), time - Date.now()),
@@ -46,10 +55,7 @@ export default {
     },
 
     mounted(){
-        this.clock();
-        this.update();
-        this.display();
-        this.convertAlien();
+      
     },
     computed: {
       
@@ -67,7 +73,7 @@ export default {
            var clock=this;
             //  var timeout;
             //  var time;
-            clock.convertAlien();
+            clock.convertToAlien();
             var alienesec = Math.trunc( this.alienEpoch/ 1000);
             var temp = alienesec % 90;
             var tempmin = Math.trunc(clock.alienEpoch / 90);
@@ -154,12 +160,21 @@ export default {
             }
             this.update();
             this.display();
-            clock.month = realmonth;
-            clock.year = tempyear;
-            clock.day = viewday;
-            clock.hours = realhour;
-            clock.minutes = realmin;
-            clock.seconds = temp;
+            // clock.month = realmonth;
+            // clock.year = tempyear;
+            // clock.day = viewday;
+            // clock.hours = realhour;
+            // clock.minutes = realmin;
+            // clock.seconds = temp;
+             this.dateTime = {
+          hours: realhour,
+          minutes: realmin,
+          seconds: temp,
+          day: viewday,
+          month:realmonth,
+          year:tempyear
+
+        };
             // this.clock.start = this.start();
         },
         convertToAlien(){
