@@ -6,7 +6,7 @@
         <div class="texxt" id="pickedalien"></div>
     
     </div> -->
-    <div>{{ dateTime.day }}/{{ dateTime.month }}/{{ dateTime.year }}   {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</div>
+    <div>{{ clock.day }}/{{ dateTime.month }}/{{ dateTime.year }}   {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</div>
 </template>
 
 <script>
@@ -19,16 +19,17 @@
 // test= d1*1.13764038050463;
 export default {
     name: "App",
-    data() {
-    
-         
+    data:() => {({
+    hours: 
+
+    })
 
         return {
-            dateTime: {
+            clock: {
             hours: realhour,
           minutes: realmin,
           seconds: temp,
-          day: viewday,
+          day: viewday.clockTest(),
           month:realmonth,
           year:tempyear
 
@@ -69,14 +70,14 @@ export default {
         // },
     },
     methods: {
-        Clock() {
+        clockTest() {
            var clock=this;
             //  var timeout;
             //  var time;
             clock.convertToAlien();
-            var alienesec = Math.trunc( this.alienEpoch/ 1000);
+            var alienesec = Math.trunc( this.alienepoch/ 1000);
             var temp = alienesec % 90;
-            var tempmin = Math.trunc(clock.alienEpoch / 90);
+            var tempmin = Math.trunc(clock.alienepoch / 90);
             var realmin = tempmin % 90;
             var temphour = Math.trunc(tempmin / 90);
             var realhour = temphour % 36;
@@ -166,8 +167,8 @@ export default {
             // clock.hours = realhour;
             // clock.minutes = realmin;
             // clock.seconds = temp;
-             this.dateTime = {
-          hours: realhour,
+             this.clock = {
+          hours : realhour,
           minutes: realmin,
           seconds: temp,
           day: viewday,
@@ -175,7 +176,15 @@ export default {
           year:tempyear
 
         };
-            // this.clock.start = this.start();
+        return {
+            realhour,
+            realmin,
+            temp,
+            viewday,
+            realmonth,
+            tempyear
+        }
+        // this.clock.start = this.start();
         },
         convertToAlien(){
         const d1 = new Date.now();
@@ -199,7 +208,7 @@ export default {
             var minutes = this.clock.minutes;
             var seconds = this.clock.seconds;
             var viewday = this.clock.day;
-            var month = this.clock.month;
+            var month = this.dateTime.month;
             var year = this.clock.year;
             //add zero
             hours = hours < 10 ? "0" + hours : "" + hours;
