@@ -237,7 +237,7 @@ export default {
                     var day = ++this.clock.day;
 
                     if (day === 770) this.clock.day = 1;
-                    // eslint-disable-next-line
+                    
                     var year = ++this.clock.year;
                     
                    

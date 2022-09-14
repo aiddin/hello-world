@@ -18,23 +18,24 @@ Alien datetime conversion
     width="200"
     height="200"
   />
-    
+  
     <timeClock v-bind:test="date"/>
   </div>
-  
+ 
   <messageTest v-bind:msg="message" />
   <input type="text" v-model="message" />
   <button v-on:click="alertMessage">Alert</button>
   <timeSecondConvert/>
-  <timerClock />
-  <alienClock/>
+  <timerClock/>
+  
+  <!-- <alienClock/> -->
 </template>
 
 <script>
 import messageTest from "./components/messageTest.vue";
 import timeClock from "./components/timeClock.vue";
 import timeSecondConvert from "./components/timeSecondConvert.vue";
-import alienClock from "./components/alienClock.vue";
+// import alienClock from "./components/alienClock.vue";
 import timerClock from "./components/timerClock.vue";
 export default {
   name: "App",
@@ -42,7 +43,7 @@ export default {
     messageTest,
     timeClock,
     timeSecondConvert,
-    alienClock,
+    // alienClock,
     timerClock
   },
   // fetch data

@@ -1,59 +1,43 @@
-<template lang="html">
-  <div v-if="isEnded">
-    Ended.
-  </div>
-
-  <div v-else>
-    <div>Days: {{ days }}</div>
-    <div>Hours: {{ hours }}</div>
-    <div>Minutes: {{ minutes }}</div>
-    <div>Seconds: {{ seconds }}</div>
+<template>
+  <div>
+    <date-dropdown
+      default="1993.02.27"
+      min="1940"
+      max="2020"
+      :months-names="months"
+      :format="'MM.DD.YYYY'"
+      v-model="date_of_birth"
+      id="dateDropdownDesign"
+    >
+    </date-dropdown>
+    /** i tried to use :format date option , but it did not work **/
   </div>
 </template>
 
 <script>
+import DateDropdown from "vue-date-dropdown";
+import moment from "moment";
+
 export default {
-  props: {
-    endDate: {
-      type: Date // Date.parse(this.endDate)
-    }
+  components: {
+    DateDropdown,
   },
-  data () { 
+  data() {
     return {
-      days: null,
-      hours: null,
-      minutes: null,
-      seconds: null,
-      isEnded: null
-    }
+      date_of_birth: "",
+      new_date_of_birth: "",
+      months: "",
+    };
   },
-  methods: {
-    updateRemaining (distance) {
-      this.days = Math.floor(distance / (1000 * 60 * 60 * 24))
-      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-      this.seconds = Math.floor((distance % (1000 * 60)) / 1000)
+  watch: {
+    date_of_birth() {
+      this.new_date_of_birth = moment(this.date_of_birth, "DD.MM.YYYY").format("MM.DD.YYYY");
+      console.log(this.date_of_birth);
+      console.log(this.new_date_of_birth);
     },
-    
-    tick () {
-      const currentTime = new Date()
-      const distance = Math.max(this.endDate - currentTime, 0)
-      this.updateRemaining(distance)
-      
-      if (distance === 0) {
-        clearInterval(this.timer)
-        this.isEnded = true
-      }
-    }
+    months() {
+      console.log(this.months);
+    },
   },
-  
-  mounted () {
-    this.tick()
-    this.timer = setInterval(this.tick.bind(this), 1000)
-  },
-  
-  destroy () {
-    clearInterval(this.timer)
-  }
-}
+};
 </script>
