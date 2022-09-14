@@ -19,10 +19,9 @@
 // test= d1*1.13764038050463;
 export default {
     name: "App",
-    data:() => {({
-    hours: 
+    data(){
 
-    })
+    
 
         return {
             clock: {
@@ -161,12 +160,12 @@ export default {
             }
             this.update();
             this.display();
-            // clock.month = realmonth;
-            // clock.year = tempyear;
-            // clock.day = viewday;
-            // clock.hours = realhour;
-            // clock.minutes = realmin;
-            // clock.seconds = temp;
+            this.month = realmonth;
+            clock.year = tempyear;
+            clock.day = viewday;
+            clock.hours = realhour;
+            clock.minutes = realmin;
+            clock.seconds = temp;
              this.clock = {
           hours : realhour,
           minutes: realmin,
