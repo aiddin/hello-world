@@ -19,13 +19,13 @@ Alien datetime conversion
     height="200"
   />
   
-    <timeClock v-bind:test="date"/>
+    <time-Clock v-bind:test="date"/>
   </div>
  
-  <messageTest v-bind:msg="message" />
+  <message-Test v-bind:msg="message" />
   <input type="text" v-model="message" />
   <button v-on:click="alertMessage">Alert</button>
-  <timeSecondConvert/>
+  <time-SecondConvert/>
   <timerClock/>
   
   <!-- <alienClock/> -->
