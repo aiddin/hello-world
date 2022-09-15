@@ -11,7 +11,12 @@
 
 <script>
 
-
+var realhour;
+var realmin;
+var temp;
+var viewday;
+var realmonth;
+var tempyear;
 // var clock = new Clock();
 // clock.start();
 // var test ;
@@ -28,19 +33,14 @@ export default {
             hours: realhour,
           minutes: realmin,
           seconds: temp,
-          day: viewday.clockTest(),
+          day: viewday,
           month:realmonth,
           year:tempyear
 
         },
-        
-
             // time: 500,
             // timeout: setTimeout(tick(), time - Date.now()),
             //  alienEpoch: '',
-
-            
-
 
             //   Clock: {
             //     alienEpoch: this.convertAlien(),
@@ -75,16 +75,16 @@ export default {
             //  var time;
             clock.convertToAlien();
             var alienesec = Math.trunc( this.alienepoch/ 1000);
-            var temp = alienesec % 90;
+             temp = alienesec % 90;
             var tempmin = Math.trunc(clock.alienepoch / 90);
-            var realmin = tempmin % 90;
+             realmin = tempmin % 90;
             var temphour = Math.trunc(tempmin / 90);
-            var realhour = temphour % 36;
+             realhour = temphour % 36;
             var tempday = Math.trunc(temphour / 36);
-            var tempyear = Math.trunc(tempday / 770); //need fixing base epoch
+             tempyear = Math.trunc(tempday / 770); //need fixing base epoch
             var realday = tempday % 770;
-            var viewday;
-            var realmonth;
+             viewday;
+             realmonth;
 
             if (realday <= 44) {
                 realmonth = "1";
@@ -166,23 +166,8 @@ export default {
             clock.hours = realhour;
             clock.minutes = realmin;
             clock.seconds = temp;
-             this.clock = {
-          hours : realhour,
-          minutes: realmin,
-          seconds: temp,
-          day: viewday,
-          month:realmonth,
-          year:tempyear
-
-        };
-        return {
-            realhour,
-            realmin,
-            temp,
-            viewday,
-            realmonth,
-            tempyear
-        }
+            
+        
         // this.clock.start = this.start();
         },
         convertToAlien(){
